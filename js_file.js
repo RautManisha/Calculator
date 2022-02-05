@@ -1,19 +1,41 @@
-const form = document.querySelector("form")
 
-console.log(form)
-const inputText = form.querySelector(".input-text")
+function sendOutput(input){
+    try{
+        inputText.value = eval(inputText.value)
+    } catch(err){
+        // alert("Please enter valid expression!")
+        inputText.value = "Invalid Expression"
+        inputText.style.color = "red"
+    }
+}
+
+function clearInvalidExceptionIfPresent(){
+    if(inputText.value === "Invalid Expression"){
+        inputText.value = ""
+        inputText.style.color = "white"
+    }
+}
+
+const form = document.querySelector(".calculator")
+const inputText = document.querySelector(".input-text")
+inputText.focus()
+document.addEventListener("keypress", (e)=>{
+    clearInvalidExceptionIfPresent()
+    if(e.key==='Enter' && e.target.classList.contains("input-text"))
+    sendOutput(inputText.value)
+})
 
 form.addEventListener("click", (e)=>{
     e.preventDefault()
-    if(e.target.classList.contains("btn-num")){
-        console.log(e.target.textContent)
-    } else if(e.target.classList.contains("btn-op")){
-        console.log(e.target.textContent)
+    clearInvalidExceptionIfPresent()
+    const currentKey = e.target.textContent
+    if(e.target.classList.contains("btn-num") ||
+     e.target.classList.contains("btn-op")){
+        inputText.value += currentKey
     } else if(e.target.classList.contains("btn-eq")){
-        console.log(e.target.textContent)
+        sendOutput(inputText.value)
     } else if(e.target.classList.contains("btn-clear")){
-        console.log(e.target.textContent)
         inputText.value = ""
     }
-
+    inputText.focus()
 })
