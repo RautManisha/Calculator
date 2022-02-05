@@ -60,4 +60,22 @@
     background-color: rgb(131, 212, 250);
 }.btn-clear{
     background-color: rgb(125, 240, 144);
+}@media (max-width:1024px) {
+    html{
+        font-size: 60%;
+    }
+    body{
+        min-height: 80vh;
+    }
+    .calculate .input-text{
+        font-size: 2.5rem;
+    }
+}@media (max-width:768px) {
+    html{
+        font-size: 50%;
+    }
+}@media (max-width:500px) {
+    html{
+        font-size: 40%;
+    }
 }
